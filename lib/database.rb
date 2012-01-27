@@ -27,3 +27,14 @@ if !database.table_exists?('scores')
     end
   end
 end
+
+if !database.table_exists?('statistics')
+  migration "create the statistics table" do
+    database.create_table :statistics do
+      primary_key :id
+      string      :name
+      string      :description
+      integer     :counter, :default => 0
+    end
+  end
+end

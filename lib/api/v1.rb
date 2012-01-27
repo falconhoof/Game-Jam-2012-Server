@@ -25,11 +25,22 @@ module Falconhoof
       end
 
       get '/stats/?' do
-        "Not implemented"
+        @stats = Statistic.all
+        @stats.to_json
       end
 
       get '/stats/:user/?' do
         "Not implemented"
+      end
+
+      post '/stats/?' do
+        params.each do |key, val|
+          @stat = Statistic.find_or_create(:name => key)
+          @stat.counter = @stat.counter + val.to_i
+          @stat.save
+        end
+
+        "SUCCESS"
       end
 
       def self.new(*)
