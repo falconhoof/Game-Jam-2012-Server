@@ -11,7 +11,7 @@ module Falconhoof
       end
 
       get '/scores/:user/?' do
-
+        "Not implemented"
       end
 
       post '/scores/?' do
@@ -22,6 +22,14 @@ module Falconhoof
         @score  = Score.create(:user_id => @user.id, :score => params[:score])
 
         @score.to_json
+      end
+
+      get '/stats/?' do
+        "Not implemented"
+      end
+
+      get '/stats/:user/?' do
+        "Not implemented"
       end
 
       def self.new(*)
