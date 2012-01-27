@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'sinatra'
+gem 'sinatra-sequel'
 
 group :development do
   gem 'shotgun'
