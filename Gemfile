@@ -5,6 +5,7 @@ gem 'sinatra-sequel'
 
 group :development do
   gem 'shotgun'
+  gem 'sqlite3'
 end
 
 group :test do
