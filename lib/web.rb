@@ -5,6 +5,11 @@ module Falconhoof
       "SUCCESS"
     end
 
+    get '/high-scores/?' do
+      @scores = Score.order(:score.desc).limit(20)
+      erb :high_scores
+    end
+
     def self.new(*)
       super
     end

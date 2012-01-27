@@ -1,5 +1,6 @@
 source :rubygems
 
+gem 'json'
 gem 'sinatra'
 gem 'sinatra-sequel'
 

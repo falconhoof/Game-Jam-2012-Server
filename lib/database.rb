@@ -1,3 +1,6 @@
+require 'sinatra'
+require 'sinatra/sequel'
+
 if ENV["RACK_ENV"] == 'development'
   set :database, 'sqlite://database.db'
 elsif ENV["RACK_ENV"] == 'production'

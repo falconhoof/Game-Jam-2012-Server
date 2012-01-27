@@ -30,5 +30,15 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 ### POST requests
 
-* falconhoof.heroku.com/api/v1/scores/:user/:email:/:score
+* falconhoof.heroku.com/api/v1/scores
+
+Takes params username, score and email (optional)
+
+RESPONSE `[{"id":25,"user":"leereilly1234","score":100}]`
+
+## Notes
+
+### Create a user
+
+    curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://localhost:9393/api/v1/scores
 
