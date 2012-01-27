@@ -61,9 +61,32 @@ Example response:
 
     `[{"id":25,"user":"leereilly1234","score":100}]`
 
+#### Report new game stats
+
+    falconhoof.heroku.com/api/v1/stats
+
+Takes the following parameters:
+
+* all of things (literally)
+  * falconhoof.heroku.com/api/v1/stats/explosions=37&death=42&[some_stat]=[some_integer_to_INCREMENT_a_counter]
+
 ## Notes
 
 ### Create a user
 
     curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://localhost:9393/api/v1/scores
 
+### Create some stats
+
+    curl -d "explosions=2&dicks=37&problems=99" http://localhost:9393/api/v1/stats/
+
+# LIMITATIONS
+
+## GLOBAL STATISTICS
+
+* Support for integer values stats only right now. When you report a stat *name* for the first time, it is created and the counter is set to the value provided. Subsequent calls to the named stat **increments** the counter value by the value provided.
+
+## MISC
+
+* No security built around the API
+* Free Heroku database is limited to 5MB, so purge often... or move the DB somewhere else

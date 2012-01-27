@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Foobar::Foo do
-  
+describe Falfonhoof::Web do
+
   def app
-    @app ||= Foobar::Foo
+    @app ||= Falconhood::Web
   end
 
   describe "GET '/'" do

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Foobar::Bar do
-  
+describe Falconhoof::API do
+
   def app
-    @app ||= Foobar::Bar
+    @app ||= Falconhoof::API
   end
-  
+
   describe "GET '/'" do
     it "should be successful" do
       get '/'
