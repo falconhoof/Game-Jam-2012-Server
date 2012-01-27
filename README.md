@@ -1,6 +1,7 @@
 # Introduction
 
 The theme for Scottish Game Jam was the image of the Ouroboros:
+
 ![Ouroboros](http://i.imgur.com/vHGog.png)
 
 # Installation
@@ -22,21 +23,43 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 ## API Client
 
-### GET request
+### GET requests
 
-* falconhoof.heroku.com/api/v1/
-* falconhoof.heroku.com/api/v1/scores
-* falconhoof.heroku.com/api/v1/scores/:user
-* falconhoof.heroku.com/api/v1/stats
-* falconhoof.heroku.com/api/v1/stats/:user
+#### Is the API up?
+
+    falconhoof.heroku.com/api/v1/
+
+#### Get the top 20 high scores
+
+    falconhoof.heroku.com/api/v1/scores
+
+#### Get the highest score for a particular user
+
+    falconhoof.heroku.com/api/v1/scores/:user
+
+#### Get the global game stats
+
+    falconhoof.heroku.com/api/v1/stats
+
+#### Get the stats recorded for a particular user
+
+    falconhoof.heroku.com/api/v1/stats/:user
 
 ### POST requests
 
-* falconhoof.heroku.com/api/v1/scores
+#### Report a new high score
 
-Takes params username, score and email (optional)
+    falconhoof.heroku.com/api/v1/scores
 
-RESPONSE `[{"id":25,"user":"leereilly1234","score":100}]`
+Takes the following parameters:
+
+* username
+* email (optional)
+* score
+
+Example response:
+
+    `[{"id":25,"user":"leereilly1234","score":100}]`
 
 ## Notes
 
