@@ -13,6 +13,7 @@ GEM
       addressable (~> 2.2.6)
     mime-types (1.17.2)
     nokogiri (1.5.0)
+    pg (0.11.0)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
@@ -53,6 +54,7 @@ PLATFORMS
 DEPENDENCIES
   heroku
   json
+  pg
   rack-test
   rspec
   shotgun
