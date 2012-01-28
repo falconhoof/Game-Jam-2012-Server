@@ -3,7 +3,7 @@ module Falconhoof
     class V1 < Sinatra::Base
 
       get '/?' do
-        "SUCCESS"
+        {:message => 'Up (yer maw)'}.to_json
       end
 
       get '/scores/?' do
@@ -38,7 +38,7 @@ module Falconhoof
           @stat.counter = @stat.counter + val.to_i
           @stat.save
         end
-        Statistic.all.to_json
+        @stats = Statistic.to_json
       end
 
       def self.new(*)

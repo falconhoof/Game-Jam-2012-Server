@@ -8,18 +8,19 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 ## Local
 
+    git clone https://github.com/falconhoof/Game-Jam-2012-Server
+    cd Game-Jam-2012-Server
+    gem install bundler
+    bundle install
+    export DATABASE_URL=mysql://[USERNAME]:[PASSWORD]@[HOSTNAME]/[DATABASE]
+
 ## Heroku
 
+    heroku create [APPLICATION NAME]
+    heroku config:add DATABASE_URL=mysql://[USERNAME]:[PASSWORD]@[HOSTNAME]/[DATABASE]
+    git push heroku master
+
 # Usage
-
-## Web Client
-
-* falconhoof.heroku.com
-* falconhoof.heroku.com/about
-* falconhoof.heroku.com/instructions
-* falconhoof.heroku.com/download
-* falconhoof.heroku.com/contribute
-
 
 ## API Client
 
@@ -27,23 +28,57 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Is the API up?
 
-    falconhoof.heroku.com/api/v1/
+    curl -d falconhoof.heroku.com/api/v1/
+
+    {"message":"Up (yer maw)"}
 
 #### Get the top 20 high scores
 
-    falconhoof.heroku.com/api/v1/scores
+    curl -d falconhoof.heroku.com/api/v1/scores
 
-#### Get the highest score for a particular user
+    [
+        {
+            "username": "davidfarrell",
+            "score": 337
+        },
+        {
+            "username": "leereilly",
+            "score": 120
+        },
+        {
+            "username": "leereilly",
+            "score": 110
+        },
+        {
+            "username": "leereilly",
+            "score": 100
+        }
+    ]
 
-    falconhoof.heroku.com/api/v1/scores/:user
+#### Get the highest score for a particular user (not implemented)
+
+    curl -d falconhoof.heroku.com/api/v1/scores/:user
 
 #### Get the global game stats
 
-    falconhoof.heroku.com/api/v1/stats
+[
+    {
+        "key": "explosions",
+        "val": 2
+    },
+    {
+        "key": "deaths",
+        "val": 37
+    },
+    {
+        "key": "fucks_given",
+        "val": 99
+    }
+]
 
-#### Get the stats recorded for a particular user
+#### Get the stats recorded for a particular user (not implemented)
 
-    falconhoof.heroku.com/api/v1/stats/:user
+    curl -d falconhoof.heroku.com/api/v1/stats/:user
 
 ### POST requests
 
@@ -57,13 +92,37 @@ Takes the following parameters:
 * email (optional)
 * score
 
+Example request:
+    curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://falconhoof.heroku.com/api/v1/scores
+
 Example response:
 
-    `[{"id":25,"user":"leereilly1234","score":100}]`
+    [{"id":25,"user":"leereilly1234","score":100}]
 
 #### Report new game stats
 
     falconhoof.heroku.com/api/v1/stats
+
+Example request:
+
+    curl -d "explosions=2&deaths=37&fucks_given=99" http://falconhoof.heroku.com/api/v1/stats/
+
+Example response:
+
+    [
+        {
+            "key": "explosions",
+            "val": 2
+        },
+        {
+            "key": "deaths",
+            "val": 37
+        },
+        {
+            "key": "fucks_given",
+            "val": 99
+        }
+    ]
 
 Takes the following parameters:
 
@@ -74,15 +133,21 @@ Example response:
 
     `[{"explosions":100}, {"dicks":100}, {"problems":99}]`
 
+## Web Client
+
+* falconhoof.heroku.com
+* falconhoof.heroku.com/statistics
+* falconhoof.heroku.com/high_scores
+
 ## Notes
 
 ### Create a user
 
-    curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://localhost:9393/api/v1/scores
+    curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://falconhoof.heroku.com/api/v1/scores
 
 ### Create some stats
 
-    curl -d "explosions=2&dicks=37&problems=99" http://localhost:9393/api/v1/stats/
+    curl -d "explosions=2&deaths=37&fucks_given=99" http://falconhoof.heroku.com/api/v1/stats/
 
 # LIMITATIONS
 
@@ -93,4 +158,4 @@ Example response:
 ## MISC
 
 * No security built around the API
-* Free Heroku database is limited to 5MB, so purge often... or move the DB somewhere else
+* Database hosted outside Heroku on a shared Dreamhost server <- single point of failure
