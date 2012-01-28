@@ -2,14 +2,14 @@ require 'sinatra'
 require 'sinatra/sequel'
 require 'sequel'
 
-Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://database.db')
+set :database, ENV['DATABASE_URL']
 
 if !database.table_exists?('users')
   migration "create users table" do
     database.create_table :users do
       primary_key :id
-      string      :username
-      string      :email
+      String      :username
+      String      :email
       index       :username, :unique => true
     end
   end
@@ -29,8 +29,8 @@ if !database.table_exists?('statistics')
   migration "create the statistics table" do
     database.create_table :statistics do
       primary_key :id
-      string      :name
-      string      :description
+      String      :name
+      tring      :description
       integer     :counter, :default => 0
     end
   end

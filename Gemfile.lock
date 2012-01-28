@@ -12,8 +12,8 @@ GEM
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mime-types (1.17.2)
+    mysql (2.8.1)
     nokogiri (1.5.0)
-    pg (0.11.0)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
@@ -54,7 +54,7 @@ PLATFORMS
 DEPENDENCIES
   heroku
   json
-  pg
+  mysql
   rack-test
   rspec
   shotgun

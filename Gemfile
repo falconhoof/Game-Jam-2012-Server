@@ -1,7 +1,7 @@
 source :rubygems
 
-gem 'pg'
 gem 'json'
+gem 'mysql'
 gem 'heroku'
 gem 'sinatra'
 gem 'sinatra-sequel'
