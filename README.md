@@ -201,7 +201,7 @@ Example response:
 
 ### Create a user
 
-  curl -d "username=leereilly&email=lee@leereilly.net" http://falconhoof.heroku.com/api/v1/users
+    curl -d "username=leereilly&email=lee@leereilly.net" http://falconhoof.heroku.com/api/v1/users
 
 ### Create a user high score
 
