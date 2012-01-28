@@ -93,6 +93,7 @@ Takes the following parameters:
 * score
 
 Example request:
+
     curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://falconhoof.heroku.com/api/v1/scores
 
 Example response:
