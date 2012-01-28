@@ -61,6 +61,8 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Get the global game stats
 
+    curl falconhoof.heroku.com/api/v1/stats
+
     [
         {
             "key": "explosions",
