@@ -11,7 +11,7 @@ module Falconhoof
     end
 
     get '/statistics/?' do
-      @stats = Statistics.all
+      @stats = Statistic.all
       erb :statistics
     end
 
