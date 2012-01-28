@@ -142,11 +142,21 @@ Example response:
 
 ### Create a user
 
+  curl -d "username=leereilly&email=lee@leereilly.net" http://falconhoof.heroku.com/api/v1/users
+
+### Create a user high score
+
     curl -d "username=leereilly&email=lee@leereilly.net&score=100" http://falconhoof.heroku.com/api/v1/scores
+
+### Create some users stats
+
+    curl -d "username=leereilly&email=lee@leereilly.net&dicks=37" http://falconhoof.heroku.com/api/v1/user/stats
 
 ### Create some stats
 
     curl -d "explosions=2&deaths=37&fucks_given=99" http://falconhoof.heroku.com/api/v1/stats/
+
+
 
 # LIMITATIONS
 
