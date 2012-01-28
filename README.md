@@ -110,6 +110,11 @@ Example request:
 
     curl -d "explosions=2&deaths=37&fucks_given=99" http://falconhoof.heroku.com/api/v1/stats/
 
+Takes the following parameters:
+
+* all of things (literally)
+  * falconhoof.heroku.com/api/v1/stats/explosions=37&death=42&[some_stat]=[some_integer_to_INCREMENT_a_counter]
+
 Example response:
 
     [
@@ -126,15 +131,6 @@ Example response:
             "val": 99
         }
     ]
-
-Takes the following parameters:
-
-* all of things (literally)
-  * falconhoof.heroku.com/api/v1/stats/explosions=37&death=42&[some_stat]=[some_integer_to_INCREMENT_a_counter]
-
-Example response:
-
-    `[{"explosions":100}, {"dicks":100}, {"problems":99}]`
 
 ## Web Client
 
