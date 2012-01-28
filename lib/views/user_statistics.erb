@@ -1,0 +1,18 @@
+<% if @user %>
+  <img style="float: right;" src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@user.email.downcase) %>?s=200">
+<% end %>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <% @user_stats.each do |stat| %>
+    <tr>
+      <td><%= stat.name %></td>
+      <td><%= stat.counter %></td>
+    </tr>
+  <% end %>
+</table>

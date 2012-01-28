@@ -3,7 +3,7 @@ class Statistic < Sequel::Model
     stats_hash = [:key => name, :val => counter].to_json
   end
 
-  def self.to_json
+  def self.all_of_the_things
     statistics = []
 
     Statistic.all.each do |stat|
@@ -12,6 +12,10 @@ class Statistic < Sequel::Model
         :val => stat.counter }
     end
 
-    statistics.to_json
+    statistics
+  end
+
+  def self.to_json
+    self.all_of_the_things.to_json
   end
 end
