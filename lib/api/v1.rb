@@ -25,8 +25,7 @@ module Falconhoof
       end
 
       get '/stats/?' do
-        @stats = Statistic.all
-        @stats.to_json
+        @stats = Statistic.to_json
       end
 
       get '/stats/:user/?' do
@@ -39,7 +38,7 @@ module Falconhoof
           @stat.counter = @stat.counter + val.to_i
           @stat.save
         end
-        Statistic.all.inspect
+        Statistic.all.to_json
       end
 
       def self.new(*)
