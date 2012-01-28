@@ -6,9 +6,9 @@ module Falconhoof
         {:message => 'Up (yer maw)'}.to_json
       end
 
-      # This does ALL THE THINGS.
+      # This submits ALL THE THINGS.
       post '/report/?' do
-        @user   = User.find_or_create(
+        @user = User.find_or_create(
           :username => params[:username],
           :email => params[:email])
         params.delete('username')
@@ -35,6 +35,20 @@ module Falconhoof
         all_the_stats << {:player => @user_stats}
         all_the_stats << {:global => Statistic.all_of_the_things}
         all_the_stats.to_json
+      end
+
+      # This retrieves all the things
+      get '/report/:username/?' do
+         @user = User.find(
+            :username => params[:username])
+
+          {:error => 'User not found'}.to_json unless @user
+
+          all_the_stats = []
+          @user_stats = UserStatistic.for_user @user.id
+          all_the_stats << {:player => @user_stats}
+          all_the_stats << {:global => Statistic.all_of_the_things}
+          all_the_stats.to_json
       end
 
       # SCORES
