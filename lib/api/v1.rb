@@ -39,8 +39,7 @@ module Falconhoof
           @stat.counter = @stat.counter + val.to_i
           @stat.save
         end
-
-        "SUCCESS"
+        Statistic.all.inspect
       end
 
       def self.new(*)

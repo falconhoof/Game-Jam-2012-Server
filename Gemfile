@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'json'
+gem 'heroku'
 gem 'sinatra'
 gem 'sinatra-sequel'
 
