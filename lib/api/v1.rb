@@ -18,9 +18,15 @@ module Falconhoof
         params.delete('score')
 
         params.each do |key, val|
+          # update users stats
           @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key)
           @user_stat.counter = @user_stat.counter + val.to_i
           @user_stat.save
+
+          # update global stats
+          @stat = Statistic.find_or_create(:name => key)
+          @stat.counter = @stat.counter + val.to_i
+          @stat.save
         end
 
         all_the_stats = []
