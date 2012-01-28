@@ -7,7 +7,7 @@ module Falconhoof
       end
 
       get '/scores/?' do
-        Score.top_scores.to_json
+        Score.top_scores
       end
 
       get '/scores/:user/?' do
