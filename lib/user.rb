@@ -1,3 +1,4 @@
 class User < Sequel::Model
-  one_to_many :scores, :user_statistics
+  one_to_many :scores
+  one_to_many :user_statistics
 end
