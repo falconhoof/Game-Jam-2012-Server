@@ -1,10 +1,16 @@
 <table class="zebra-striped">
   <thead>
     <tr>
-      <th>Event</th>
+      <th>Thing</th>
       <th>Count</th>
     </tr>
   </thead>
+
+  <tr>
+    <td>total_players</td>
+    <td><%= @total_players %></td>
+  </tr>
+
   <% @stats.each do |stat| %>
     <tr>
       <td><%= stat.name %></td>

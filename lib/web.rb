@@ -14,6 +14,7 @@ module Falconhoof
 
     get '/statistics/?' do
       @stats = Statistic.all
+      @total_players = User.count
       @title = "Statistics"
       erb :statistics
     end

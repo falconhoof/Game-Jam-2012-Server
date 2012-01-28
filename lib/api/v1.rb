@@ -34,6 +34,15 @@ module Falconhoof
           @stat.save
         end
 
+        # Increment game counters
+        @stat = Statistic.find_or_create(:name => 'total_games')
+        @stat.counter = @stat.counter + 1
+        @stat.save
+
+        @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
+        @user_stat.counter = @user_stat.counter + 1
+        @user_stat.save
+
         all_the_stats = []
 
         @user_stats = UserStatistic.for_user @user.id
