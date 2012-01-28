@@ -18,6 +18,13 @@ module Falconhoof
       erb :statistics
     end
 
+    get '/player-statistics/:username/?' do
+      @user = User.find(:username => 'leereilly')
+      @user_stats = UserStatistic.filter(:user_id => @user.id)
+      @title = "Statistics for LeeReilly"
+      erb :user_statistics
+    end
+
     def self.new(*)
       super
     end
