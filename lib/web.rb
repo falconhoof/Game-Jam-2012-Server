@@ -2,7 +2,7 @@ module Falconhoof
   class Web < Sinatra::Base
 
     get '/' do
-      "SUCCESS"
+      erb :index
     end
 
     get '/high-scores/?' do
