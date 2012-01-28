@@ -1,7 +1,16 @@
-<pre>
-<% @stats.each do |stat| %>
- * <%=stat.name %>: <%= stat.counter %>
-<% end %>
-</pre>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <% @stats.each do |stat| %>
+    <tr>
+      <td><%= stat.name %></td>
+      <td><%= stat.counter %></td>
+    </tr>
+  <% end %>
+</table>
 
 <center><img src="http://i.imgur.com/NdW3R.jpg"></center>
