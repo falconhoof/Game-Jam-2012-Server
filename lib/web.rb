@@ -10,6 +10,11 @@ module Falconhoof
       erb :high_scores
     end
 
+    get '/statistics/?' do
+      @stats = Statistics.all
+      erb :statistics
+    end
+
     def self.new(*)
       super
     end
