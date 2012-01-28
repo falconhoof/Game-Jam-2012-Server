@@ -1,9 +1,3 @@
-# Introduction
-
-The theme for Scottish Game Jam was the image of the Ouroboros:
-
-![Ouroboros](http://i.imgur.com/vHGog.png)
-
 # Installation
 
 ## Local
