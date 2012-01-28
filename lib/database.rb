@@ -1,11 +1,8 @@
 require 'sinatra'
 require 'sinatra/sequel'
+require 'sequel'
 
-if ENV["RACK_ENV"] == 'development'
-  set :database, 'sqlite://database.db'
-elsif ENV["RACK_ENV"] == 'production'
-  set :database, URI.parse(ENV['DATABASE_URL']
-end
+Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://database.db')
 
 if !database.table_exists?('users')
   migration "create users table" do
