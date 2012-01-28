@@ -136,9 +136,9 @@ Example response:
 
 ## Web Client
 
-* falconhoof.heroku.com
-* falconhoof.heroku.com/statistics
-* falconhoof.heroku.com/high_scores
+* http://falconhoof.heroku.com
+* http://falconhoof.heroku.com/statistics
+* http://falconhoof.heroku.com/high_scores
 
 ## Notes
 
