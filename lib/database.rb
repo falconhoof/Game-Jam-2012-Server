@@ -4,7 +4,7 @@ require 'sinatra/sequel'
 if ENV["RACK_ENV"] == 'development'
   set :database, 'sqlite://database.db'
 elsif ENV["RACK_ENV"] == 'production'
-  #
+  set :database, URI.parse(ENV['DATABASE_URL']
 end
 
 if !database.table_exists?('users')

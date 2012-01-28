@@ -3,6 +3,7 @@ source :rubygems
 gem 'json'
 gem 'heroku'
 gem 'sinatra'
+gem 'postgres'
 gem 'sinatra-sequel'
 
 group :development do
