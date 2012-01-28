@@ -6,6 +6,31 @@ module Falconhoof
         {:message => 'Up (yer maw)'}.to_json
       end
 
+      # This does ALL THE THINGS.
+      post '/report/?' do
+        @user   = User.find_or_create(
+          :username => params[:username],
+          :email => params[:email])
+        params.delete('username')
+        params.delete('email')
+
+        @score  = Score.create(:user_id => @user.id, :score => params[:score])
+        params.delete('score')
+
+        params.each do |key, val|
+          @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key)
+          @user_stat.counter = @user_stat.counter + val.to_i
+          @user_stat.save
+        end
+
+        all_the_stats = []
+
+        @user_stats = UserStatistic.for_user @user.id
+        all_the_stats << {:global => @user_stats}
+        all_the_stats << {:player => Statistic.all_of_the_things}
+        all_the_stats.to_json
+      end
+
       # SCORES
 
       get '/scores/?' do
@@ -63,7 +88,7 @@ module Falconhoof
         "NOT IMPLEMENTED"
       end
 
-       # Create new user statistics
+      # Create new user statistics
       post '/users/stats/?' do
         @user   = User.find_or_create(
           :username => params[:username],
