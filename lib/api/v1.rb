@@ -2,6 +2,17 @@ module Falconhoof
   module API
     class V1 < Sinatra::Base
 
+      helpers do
+        def statistics_report
+          all_the_stats = []
+
+          @user_stats = UserStatistic.for_user @user.id
+          all_the_stats << {:player => @user_stats}
+          all_the_stats << {:global => Statistic.all_of_the_things}
+          all_the_stats
+        end
+      end
+
       # Find out if the web service is up.
       #
       # Returns JSON.
@@ -43,12 +54,7 @@ module Falconhoof
         @user_stat.counter = @user_stat.counter + 1
         @user_stat.save
 
-        all_the_stats = []
-
-        @user_stats = UserStatistic.for_user @user.id
-        all_the_stats << {:player => @user_stats}
-        all_the_stats << {:global => Statistic.all_of_the_things}
-        all_the_stats.to_json
+        statistics_report.to_json
       end
 
       # This retrieves all the things
@@ -59,11 +65,7 @@ module Falconhoof
 
           {:error => 'User not found'}.to_json unless @user
 
-          all_the_stats = []
-          @user_stats = UserStatistic.for_user @user.id
-          all_the_stats << {:player => @user_stats}
-          all_the_stats << {:global => Statistic.all_of_the_things}
-          all_the_stats.to_json
+          statistics_report.to_json
       end
 
       # SCORES
