@@ -1,7 +1,3 @@
-require 'sinatra'
-require 'sinatra/sequel'
-require 'sequel'
-
 set :database, ENV['DATABASE_URL']
 
 if !database.table_exists?('users')
