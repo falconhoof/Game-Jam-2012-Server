@@ -61,20 +61,20 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Get the global game stats
 
-[
-    {
-        "key": "explosions",
-        "val": 2
-    },
-    {
-        "key": "deaths",
-        "val": 37
-    },
-    {
-        "key": "fucks_given",
-        "val": 99
-    }
-]
+    [
+        {
+            "key": "explosions",
+            "val": 2
+        },
+        {
+            "key": "deaths",
+            "val": 37
+        },
+        {
+            "key": "fucks_given",
+            "val": 99
+        }
+    ]
 
 #### Get the stats recorded for a particular user (not implemented)
 
