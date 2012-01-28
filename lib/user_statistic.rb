@@ -6,10 +6,7 @@ class UserStatistic < Sequel::Model
   end
 
   def self.for_user(user_id)
-    puts "In for"
     @users_stats = UserStatistic.filter(:user_id => user_id)
-
-    puts "Got #{@users_stats.count} stats!"
 
     statistics = []
 
