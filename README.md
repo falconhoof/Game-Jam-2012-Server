@@ -28,13 +28,13 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Is the API up?
 
-    curl -d falconhoof.heroku.com/api/v1/
+    curl falconhoof.heroku.com/api/v1/
 
     {"message":"Up (yer maw)"}
 
 #### Get the top 20 high scores
 
-    curl -d falconhoof.heroku.com/api/v1/scores
+    curl falconhoof.heroku.com/api/v1/scores
 
     [
         {
@@ -57,7 +57,7 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Get the highest score for a particular user (not implemented)
 
-    curl -d falconhoof.heroku.com/api/v1/scores/:user
+    curl falconhoof.heroku.com/api/v1/scores/:user
 
 #### Get the global game stats
 
@@ -78,7 +78,7 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 #### Get the stats recorded for a particular user (not implemented)
 
-    curl -d falconhoof.heroku.com/api/v1/stats/:user
+    curl falconhoof.heroku.com/api/v1/stats/:user
 
 ### POST requests
 
