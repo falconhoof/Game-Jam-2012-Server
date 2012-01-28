@@ -18,8 +18,6 @@
 
 ## API Client
 
-![](https://github.com/falconhoof/Game-Jam-2012-Client/blob/87e87d92ffb0a260c6a4c54cef7d58922158202b/assets/charAnim.png?raw=true)
-
 ### GET requests
 
 #### Is the API up?

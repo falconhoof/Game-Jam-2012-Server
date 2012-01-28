@@ -2,12 +2,17 @@ module Falconhoof
   module API
     class V1 < Sinatra::Base
 
+      # Find out if the web service is up.
+      #
+      # Returns JSON.
       get '/?' do
+        content_type :json
         {:message => 'Up (yer maw)'}.to_json
       end
 
       # This submits ALL THE THINGS.
       post '/report/?' do
+        content_type :json
         @user = User.find_or_create(
           :username => params[:username],
           :email => params[:email])
@@ -39,6 +44,7 @@ module Falconhoof
 
       # This retrieves all the things
       get '/report/:username/?' do
+        content_type :json
          @user = User.find(
             :username => params[:username])
 
@@ -54,14 +60,17 @@ module Falconhoof
       # SCORES
 
       get '/scores/?' do
+        content_type :json
         Score.top_scores
       end
 
       get '/scores/:user/?' do
+        content_type :json
         "Not implemented"
       end
 
       post '/scores/?' do
+        content_type :json
         @user   = User.find_or_create(
           :username => params[:username],
           :email => params[:email])
@@ -74,14 +83,17 @@ module Falconhoof
       # STATS
 
       get '/stats/?' do
+        content_type :json
         @stats = Statistic.to_json
       end
 
       get '/stats/:user/?' do
-        "Not implemented"
+        content_type :json
+        {:error => 'Not implemented'}.to_json
       end
 
       post '/stats/?' do
+        content_type :json
         params.each do |key, val|
           @stat = Statistic.find_or_create(:name => key)
           @stat.counter = @stat.counter + val.to_i
@@ -96,6 +108,7 @@ module Falconhoof
       #
       # Return the user in JSON format.
       post '/users/?' do
+        content_type :json
         @user   = User.find_or_create(
           :username => params[:username],
           :email => params[:email])
@@ -105,11 +118,13 @@ module Falconhoof
 
       # Create a new user score
       post '/users/score/?' do
-        "NOT IMPLEMENTED"
+        content_type :json
+        {:error => 'Not implemented'}.to_json
       end
 
       # Create new user statistics
       post '/users/stats/?' do
+        content_type :json
         @user   = User.find_or_create(
           :username => params[:username],
           :email => params[:email])
