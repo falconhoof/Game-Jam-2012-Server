@@ -84,6 +84,65 @@ The theme for Scottish Game Jam was the image of the Ouroboros:
 
 ### POST requests
 
+#### Submit a report
+
+    http://falconhood.heroku.com/api/v1/report
+
+Takes the following parameters:
+
+* username
+* email (optional)
+* score
+
+**NOTE:** Every other key/value pair provided is expected to be a recorded stat. E.g. the following request does the following:
+
+1. Records a new high score for the player of 10
+2. Increments the players total number of explosions by 4, deaths by 5 and trees by 4.
+3. Also, increments the total/global number of explosions by 4, deaths by 5 and trees by 4.
+4. Returns player and global stats for client-side processing.
+
+Example request:
+
+    curl -d "username=leereilly&email=lee@leereilly.net&score=10&explosions=4&deaths=5&trees=4" http://falconhood.heroku.com/api/v1/report
+
+Example response:
+
+    [
+        {
+            "player": [
+                {
+                    "key": "trees",
+                    "val": 8
+                },
+                {
+                    "key": "deaths",
+                    "val": 10
+                },
+                {
+                    "key": "explosions",
+                    "val": 8
+                }
+            ]
+        },
+        {
+            "global": [
+                {
+                    "key": "explosions",
+                    "val": 20
+                },
+                {
+                    "key": "deaths",
+                    "val": 222
+                },
+                {
+                    "key": "trees",
+                    "val": 8
+                },
+            ]
+        }
+    ]
+
+
 #### Report a new high score
 
     falconhoof.heroku.com/api/v1/scores
@@ -150,7 +209,7 @@ Example response:
 
 ### Create some users stats
 
-    curl -d "username=leereilly&email=lee@leereilly.net&dicks=37" http://falconhoof.heroku.com/api/v1/user/stats
+    curl -d "username=leereilly&email=lee@leereilly.net&dicks=37" http://falconhoof.heroku.com/api/v1/users/stats
 
 ### Create some stats
 

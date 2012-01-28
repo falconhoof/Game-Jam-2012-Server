@@ -32,8 +32,8 @@ module Falconhoof
         all_the_stats = []
 
         @user_stats = UserStatistic.for_user @user.id
-        all_the_stats << {:global => @user_stats}
-        all_the_stats << {:player => Statistic.all_of_the_things}
+        all_the_stats << {:player => @user_stats}
+        all_the_stats << {:global => Statistic.all_of_the_things}
         all_the_stats.to_json
       end
 
