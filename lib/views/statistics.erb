@@ -1,4 +1,10 @@
-<table class="zebra-striped">
+<script src="js/jquery/jquery.tablesorter.min.js"></script>
+<script >
+  $(function() {
+    $("table#sortTableExample").tablesorter({ sortList: [[0,1]] });
+  });
+</script>
+<table class="zebra-striped" id="sortTableExample">
   <thead>
     <tr>
       <th>Thing</th>
@@ -13,10 +19,8 @@
 
   <% @stats.each do |stat| %>
     <tr>
-      <td><%= stat.name %></td>
+      <td><%= stat.name.gsub("_", " ") %></td>
       <td><%= stat.counter %></td>
     </tr>
   <% end %>
 </table>
-
-<center><img src="http://i.imgur.com/NdW3R.jpg"></center>
