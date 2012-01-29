@@ -24,3 +24,60 @@
     </tr>
   <% end %>
 </table>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Level');
+        data.addColumn('number', 'Explosions');
+        data.addColumn('number', 'Pickups');
+        data.addColumn('number', 'Platforms');
+        data.addColumn('number', 'Spawn Points');
+        data.addColumn('number', 'Trees');
+        data.addRows([
+          [ '1',
+            <%= stat = Statistic.find(:name => 'level_1_explosions').counter %>,
+            <%= stat = Statistic.find(:name => 'level_1_pickups').counter %>,
+            <%= stat = Statistic.find(:name => 'level_1_platforms').counter %>,
+            <%= stat = Statistic.find(:name => 'level_1_spawn_points').counter %>,
+            <%= stat = Statistic.find(:name => 'level_1_trees').counter %>],
+          [ '2',
+            <%= stat = Statistic.find(:name => 'level_2_explosions').counter %>,
+            <%= stat = Statistic.find(:name => 'level_2_pickups').counter %>,
+            <%= stat = Statistic.find(:name => 'level_2_platforms').counter %>,
+            <%= stat = Statistic.find(:name => 'level_2_spawn_points').counter %>,
+            <%= stat = Statistic.find(:name => 'level_2_trees').counter %>],
+          [ '3',
+            <%= stat = Statistic.find(:name => 'level_3_explosions').counter %>,
+            <%= stat = Statistic.find(:name => 'level_3_pickups').counter %>,
+            <%= stat = Statistic.find(:name => 'level_3_platforms').counter %>,
+            <%= stat = Statistic.find(:name => 'level_3_spawn_points').counter %>,
+            <%= stat = Statistic.find(:name => 'level_3_trees').counter %>],
+          [ '4',
+            <%= stat = Statistic.find(:name => 'level_4_explosions').counter %>,
+            <%= stat = Statistic.find(:name => 'level_4_pickups').counter %>,
+            <%= stat = Statistic.find(:name => 'level_4_platforms').counter %>,
+            <%= stat = Statistic.find(:name => 'level_4_spawn_points').counter %>,
+            <%= stat = Statistic.find(:name => 'level_4_trees').counter %>],
+          [ '5',
+            <%= stat = Statistic.find(:name => 'level_5_explosions').counter %>,
+            <%= stat = Statistic.find(:name => 'level_5_pickups').counter %>,
+            <%= stat = Statistic.find(:name => 'level_5_platforms').counter %>,
+            <%= stat = Statistic.find(:name => 'level_5_spawn_points').counter %>,
+            <%= stat = Statistic.find(:name => 'level_5_trees').counter %>]
+        ]);
+
+        var options = {
+          width: 820, height: 500,
+          title: 'Level 1 - Level 5 Statistics',
+          vAxis: {title: 'Level',  titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+<div id="chart_div"></div>
