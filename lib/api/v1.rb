@@ -38,7 +38,7 @@ module Falconhoof
 
           # If a score is provided, update the users' score
           if params.has_key? 'score'
-            @score  = Score.create(:user_id => @user.id, :score => params[:score])
+            score  = Score.create(:user_id => @user.id, :score => params[:score])
             params.delete('score')
           end
         end
@@ -52,29 +52,30 @@ module Falconhoof
         params.each do |key, val|
           if @user
             # update users stats
-            @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key_prep + key)
-            @user_stat.counter = @user_stat.counter + val.to_i
-            @user_stat.save
+            user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => (key_prep + key))
+            user_stat.counter = user_stat.counter + val.to_i
+            user_stat.save
           end
 
           # update global stats
-          @stat = Statistic.find_or_create(:name => key_prep + key)
-          @stat.counter = @stat.counter + val.to_i
-          @stat.save
+          stat = Statistic.find_or_create(:name => (key_prep + key))
+          stat.counter = stat.counter + val.to_i
+          stat.save
         end
 
         # Increment game counters
-        @stat = Statistic.find_or_create(:name => 'total_games')
-        @stat.counter = @stat.counter + 1
-        @stat.save
+        games = Statistic.find_or_create(:name => 'total_games')
+        games.counter = games.counter + 1
+        games.save
 
         if @user
-          @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
-          @user_stat.counter = @user_stat.counter + 1
-          @user_stat.save
+          puts "We got another user"
+          user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
+          user_stat.counter = @user_stat.counter + 1
+          user_stat.save
         end
 
-        statistics_report(@user).to_json
+        Statistic.all_of_the_things.to_json
       end
 
       # This retrieves all the things
