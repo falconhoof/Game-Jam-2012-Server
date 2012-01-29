@@ -43,7 +43,7 @@ module Falconhoof
           end
         end
 
-        key_appendix = ''
+        key_prep = ''
         if params.has_key? 'levelId'
           key_prep = "level_#{params[:levelId]}_"
         end
