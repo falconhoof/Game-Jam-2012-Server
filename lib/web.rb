@@ -2,7 +2,7 @@ module Falconhoof
   class Web < Sinatra::Base
 
     get '/' do
-      @title = "Rebirth"
+      @title = "Past Life"
       @scores = Score.order(:score.desc).limit(3)
       erb :index, {:layout => :two_column_layout}
     end
