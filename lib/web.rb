@@ -12,6 +12,11 @@ module Falconhoof
       erb :high_scores
     end
 
+    get '/play/?' do
+      @title = "Play"
+      erb :play
+    end
+
     get '/statistics/?' do
       @stats = Statistic.all
       @total_players = User.count
