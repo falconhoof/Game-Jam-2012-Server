@@ -45,19 +45,19 @@ module Falconhoof
 
         key_appendix = ''
         if params.has_key? 'levelId'
-          key_appendix = "level_#{params[:levelId]}"
+          key_prep = "level_#{params[:levelId]}_"
         end
 
         params.each do |key, val|
           if @user
             # update users stats
-            @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key + key_appendix)
+            @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key_prep + key)
             @user_stat.counter = @user_stat.counter + val.to_i
             @user_stat.save
           end
 
           # update global stats
-          @stat = Statistic.find_or_create(:name => key + key_appendix)
+          @stat = Statistic.find_or_create(:name => key_prep + key)
           @stat.counter = @stat.counter + val.to_i
           @stat.save
         end
