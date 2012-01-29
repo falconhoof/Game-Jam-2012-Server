@@ -49,7 +49,7 @@ module Falconhoof
         end
 
         params.each do |key, val|
-          if (params.has_key? 'userame') || (params.has_key? 'email') # *puke*
+          if @user
             # update users stats
             @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key + key_appendix)
             @user_stat.counter = @user_stat.counter + val.to_i
@@ -67,7 +67,7 @@ module Falconhoof
         @stat.counter = @stat.counter + 1
         @stat.save
 
-        if (params.has_key? 'userame') || (params.has_key? 'email') # *mega-puke*
+        if @user
           @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
           @user_stat.counter = @user_stat.counter + 1
           @user_stat.save
