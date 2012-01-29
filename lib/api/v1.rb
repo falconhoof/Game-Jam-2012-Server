@@ -25,23 +25,39 @@ module Falconhoof
       # This submits ALL THE THINGS.
       post '/report/?' do
         content_type :json
-        @user = User.find_or_create(
-          :username => params[:username],
-          :email => params[:email])
-        params.delete('username')
-        params.delete('email')
 
-        @score  = Score.create(:user_id => @user.id, :score => params[:score])
-        params.delete('score')
+        # The following is bit kludgy due to rapidly moving requirements ಠ_ಠ
+
+        # If a usename or email is provided, create or find the user
+        if (params.has_key? 'userame') || (params.has_key? 'email')
+          @user = User.find_or_create(
+            :username => params[:username],
+            :email => params[:email])
+          params.delete('username')
+          params.delete('email')
+
+          # If a score is provided, update the users' score
+          if params.has_key? 'score'
+            @score  = Score.create(:user_id => @user.id, :score => params[:score])
+            params.delete('score')
+          end
+        end
+
+        key_appendix = ''
+        if params.has_key? 'levelId'
+          key_appendix = "level_#{params[:levelId]}"
+        end
 
         params.each do |key, val|
-          # update users stats
-          @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key)
-          @user_stat.counter = @user_stat.counter + val.to_i
-          @user_stat.save
+          if (params.has_key? 'userame') || (params.has_key? 'email') # *puke*
+            # update users stats
+            @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => key + key_appendix)
+            @user_stat.counter = @user_stat.counter + val.to_i
+            @user_stat.save
+          end
 
           # update global stats
-          @stat = Statistic.find_or_create(:name => key)
+          @stat = Statistic.find_or_create(:name => key + key_appendix)
           @stat.counter = @stat.counter + val.to_i
           @stat.save
         end
@@ -51,9 +67,11 @@ module Falconhoof
         @stat.counter = @stat.counter + 1
         @stat.save
 
-        @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
-        @user_stat.counter = @user_stat.counter + 1
-        @user_stat.save
+        if (params.has_key? 'userame') || (params.has_key? 'email') # *mega-puke*
+          @user_stat = UserStatistic.find_or_create(:user_id => @user.id, :name => 'total_games')
+          @user_stat.counter = @user_stat.counter + 1
+          @user_stat.save
+        end
 
         statistics_report(@user).to_json
       end
