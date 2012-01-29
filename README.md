@@ -84,9 +84,15 @@
 
 Takes the following parameters:
 
-* username
+* levelId
+* username (optional)
 * email (optional)
-* score
+* score (optional)
+* explosions
+* platforms
+* spawn_points
+* trees
+* pickups
 
 **NOTE:** Every other key/value pair provided is expected to be a recorded stat. E.g. the following request does the following:
 
@@ -98,6 +104,8 @@ Takes the following parameters:
 Example request:
 
     curl -d "username=leereilly&email=lee@leereilly.net&score=10&explosions=4&deaths=5&trees=4" http://falconhood.heroku.com/api/v1/report
+    curl -d "levelId=1&explosions=1&platforms=2&spawn_points=3&trees=4&pickups=5" http://falconhood.heroku.com/api/v1/report
+
 
 Example response:
 
