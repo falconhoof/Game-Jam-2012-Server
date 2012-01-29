@@ -46,6 +46,7 @@ module Falconhoof
         key_prep = ''
         if params.has_key? 'levelId'
           key_prep = "level_#{params[:levelId]}_"
+          params.delete('levelId')
         end
 
         params.each do |key, val|
