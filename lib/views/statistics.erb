@@ -18,10 +18,12 @@
   </tr>-->
 
   <% @stats.each do |stat| %>
-    <tr>
-      <td><%= stat.name.gsub("_", " ") %></td>
-      <td><%= stat.counter %></td>
-    </tr>
+    <% unless stat.name.index('level_0_') == 0 %>
+      <tr>
+        <td><%= stat.name.gsub("_", " ") %></td>
+        <td><%= stat.counter %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
