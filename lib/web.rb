@@ -2,7 +2,7 @@ module Falconhoof
   class Web < Sinatra::Base
 
     get '/' do
-      @title = "Coming soon!"
+      @title = "Greetings Traveler!"
       erb :index
     end
 
