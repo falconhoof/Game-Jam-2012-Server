@@ -15,7 +15,7 @@ module Falconhoof
 
     get '/play/?' do
       @title = "Play"
-      erb :play
+      erb :play, {:layout => :large_layout}
     end
 
     get '/statistics/?' do
